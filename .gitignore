@@ -3,3 +3,5 @@ javaCA.iml
 output
 out
 target
+.vagrant
+.DS_Store

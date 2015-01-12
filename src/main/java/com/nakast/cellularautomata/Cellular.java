@@ -18,6 +18,9 @@ public class Cellular {
             BufferedImage last = startImage;
 
             for (iteration = 1; iteration <= iterations; iteration++) {
+                if ((iteration % 100) == 0) {
+                    System.out.println(iteration + " of " + iterations);
+                }
                 BufferedImage newImg = nextFrame(last);
                 writeFile(newImg);
                 last = newImg;
@@ -97,7 +100,7 @@ public class Cellular {
         }
 
         long start = System.nanoTime();
-        new Cellular(img, 1000);
+        new Cellular(img, 5000);
         long end = System.nanoTime();
 
         System.out.println("Elapsed: " + ((end - start) / 1000 / 1000 / 1000.0) + "s");
