@@ -52,11 +52,11 @@ public class Cellular {
                 }
 
                 if ((r > g) && (r > b)) {
-                    out.setRGB(x, y, getRGB(r/8, rand.nextInt(204), rand.nextInt(255)));
+                    out.setRGB(x, y, getRGB(r/7, rand.nextInt(204), rand.nextInt(255)));
                 } else if ((g > r) && (g > b)) {
-                    out.setRGB(x, y, getRGB(rand.nextInt(255), g/8, rand.nextInt(204)));
+                    out.setRGB(x, y, getRGB(rand.nextInt(255), g/7, rand.nextInt(204)));
                 } else if ((b > r) && (b > g)) {
-                    out.setRGB(x, y, getRGB(rand.nextInt(204), rand.nextInt(255), b/8));
+                    out.setRGB(x, y, getRGB(rand.nextInt(204), rand.nextInt(255), b/7));
                 } else {
                     out.setRGB(x, y, img.getRGB(x, y));
                 }
@@ -79,7 +79,7 @@ public class Cellular {
     }
 
     private int getRGB(int r, int g, int b) {
-        return ((r & 0x000000FF) << 16) | ((g & 0x000000FF) << 8) | (b & 0x000000FF);
+        return ((Math.min(r, 255) & 0x000000FF) << 16) | ((Math.min(g, 255) & 0x000000FF) << 8) | (Math.min(b, 255) & 0x000000FF);
     }
 
     public static void main(String[] args) {
@@ -97,7 +97,7 @@ public class Cellular {
         }
 
         long start = System.nanoTime();
-        new Cellular(img, 2000);
+        new Cellular(img, 1000);
         long end = System.nanoTime();
 
         System.out.println("Elapsed: " + ((end - start) / 1000 / 1000 / 1000.0) + "s");
